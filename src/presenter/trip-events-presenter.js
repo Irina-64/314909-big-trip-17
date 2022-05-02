@@ -3,7 +3,7 @@ import RouteEventsListView from '../view/route-events-list-view.js';
 import RouteEventView from '../view/route-event-view.js';
 import EventListItemView from '../view/event-list-item-view.js';
 import EventCreationFormView from '../view/event-edit-form.js';
-import EventDetailsView from '../view/events-details.js';
+import EventDetails from '../view/events-details.js';
 import EventOffersView from '../view/event-offers-view.js';
 import EventDestinationView from '../view/event-destination-view.js';
 import TripInfoView from '../view/trip-info-view.js';
@@ -21,7 +21,7 @@ export default class TripEventsPresenter {
   routeEventsListComponent = new RouteEventsListView();
   eventListItem = new EventListItemView();
   eventCreationFormComponent = new EventCreationFormView();
-  eventDetailsComponent = new EventDetailsView();
+  eventDetailsComponent = new EventDetails();
 
 
   init = (tripEventsContainer, tripHeaderContainer) => {
