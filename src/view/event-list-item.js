@@ -5,7 +5,7 @@ import {
 const createEventListItemTemplate = () => ('<li class="trip-events__item"> </li>');
 
 
-export default class EventListItemView {
+export default class EventListItem {
   getTemplate() {
     return createEventListItemTemplate();
   }
