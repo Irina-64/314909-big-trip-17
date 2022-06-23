@@ -19,7 +19,7 @@ export default class ListPresenter {
   #listComponent = new ListView();
   #listContainer = null;
   #pointModel = null;
-  #listEmtyConponent = null;
+  #listEmptyComponent = null;
   #pointPresenter = new Map();
   #pointNewPresenter = null;
   #currentSortType = SortType.DAY;
@@ -82,7 +82,7 @@ export default class ListPresenter {
       return;
     }
     if (pointsCount === 0) {
-      this.#renderListEmty();
+      this.#renderListEmpty();
       return;
     }
 
@@ -97,9 +97,9 @@ export default class ListPresenter {
     this.#sortComponent.setSortTypeChangeHandler(this.#handleSortTypeChange);
   };
 
-  #renderListEmty = () => {
-    this.#listEmtyConponent = new ListEmptyView(this.#filterType);
-    render(this.#listEmtyConponent, this.#listContainer);
+  #renderListEmpty = () => {
+    this.#listEmptyComponent = new ListEmptyView(this.#filterType);
+    render(this.#listEmptyComponent, this.#listContainer);
   };
 
   #renderLoading = () => {
@@ -124,8 +124,8 @@ export default class ListPresenter {
     remove(this.#sortComponent);
     remove(this.#loadingComponent);
 
-    if (this.#listEmtyConponent) {
-      remove(this.#listEmtyConponent);
+    if (this.#listEmptyComponent) {
+      remove(this.#listEmptyComponent);
     }
 
     if (resetSortType) {
