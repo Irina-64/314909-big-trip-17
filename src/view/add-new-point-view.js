@@ -26,17 +26,17 @@ const BLANK_POINT = {
   offers: []
 };
 
-const typeListTemplate = (type) => (`<div class="event__type-item">
+const offerListTemplate = (type) => (`<div class="event__type-item">
 <input id="event-type-${type}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${type}">
 <label class="event__type-label  event__type-label--${type}" for="event-type-${type}-1">${type[0].toUpperCase() + type.slice(1)}</label>
 </div>`);
 
-const createTypeList = (offers) => offers.map((offer) => typeListTemplate(offer.type)).join('');
+const createTypeList = (offers) => offers.map((offer) => offerListTemplate(offer.type)).join('');
 
-const destinationListTemplate = (destinationName) => (`<option value="${destinationName}"></option>`);
-const createDestinationList = (destinations) => destinations.map((destination) => destinationListTemplate(destination.name)).join('');
+const createListTemplate = (destinationName) => (`<option value="${destinationName}"></option>`);
+const createDestinationList = (destinations) => destinations.map((destination) => createListTemplate(destination.name)).join('');
 
-const offersItemTemplate = (offer, isDisabled) => (`<div class="event__offer-selector">
+const offerItemTemplate = (offer, isDisabled) => (`<div class="event__offer-selector">
 <input class="event__offer-checkbox  visually-hidden" id="event-offer-${offer.id}" type="checkbox" name="event-offer-${offer.id}" ${isDisabled ? 'disabled' : ''}>
 <label class="event__offer-label" for="event-offer-${offer.id}">
   <span class="event__offer-title">${offer.title}</span>
@@ -44,18 +44,18 @@ const offersItemTemplate = (offer, isDisabled) => (`<div class="event__offer-sel
   <span class="event__offer-price">${offer.price}</span>
 </label>
 </div>`);
-const createOfferItems = (offers, isDisabled) => offers.map((offer) => offersItemTemplate(offer, isDisabled)).join('');
+const createOfferItems = (offers, isDisabled) => offers.map((offer) => offerItemTemplate(offer, isDisabled)).join('');
 const getOffersByPointType = (offers, type) => offers.find((offer) => offer.type === type);
 
-const destinationPicturesTemplate = (picture) => (`<img class="event__photo" src="${picture.src}" alt="Event photo">`);
-const createDestinationPictures = (pictures) => pictures.map((picture) => destinationPicturesTemplate(picture)).join('');
+const createPicturesTemplate = (picture) => (`<img class="event__photo" src="${picture.src}" alt="Event photo">`);
+const createDestinationPictures = (pictures) => pictures.map((picture) => createPicturesTemplate(picture)).join('');
 const getDestinationByName = (destinations, name) => {
   if (name) {
     return destinations.find((destination) => destination.name === name);
   }
   return null;
 };
-const destinationContainerTemplate = (stateDestination) => {
+const setContainerTemplate = (stateDestination) => {
   if (stateDestination !== null && stateDestination.name !== '') {
     return (`<section class="event__section  event__section--destination">
                 <h3 class="event__section-title  event__section-title--destination">Destination</h3>
@@ -89,7 +89,7 @@ const createAddNewPointTemplate = (offers = [], destinations = [], point) => {
   const destinationList = createDestinationList(destinations);
   const stateOffers = getOffersByPointType(offers, stateType);
   const offerItems = createOfferItems(stateOffers.offers, isDisabled);
-  const destinationSection = destinationContainerTemplate(stateDestination);
+  const destinationSection = setContainerTemplate(stateDestination);
 
   return (`<li class="trip-events__item">
   <form class="event event--edit" action="#" method="post">
